@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - YouTube Clone</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f9f9f9;
+    }
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      width: 240px;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      padding-top: 60px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: #333;
+      text-decoration: none;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #f1f1f1;
+      font-weight: bold;
+    }
+    .main-content {
+      margin-left: 240px;
+      padding: 30px;
+    }
+    .navbar-brand i {
+      color: red;
+      margin-right: 8px;
+    }
+    .top-nav {
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+    }
+    .content-card {
+      max-width: 800px;
+      margin: auto;
+    }
+        .avatar-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #eee;
+      display: block;
+      margin: 10px auto;
+    }
+    .tag {
+      background-color: #dc3545;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      margin: 5px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .tag i {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm top-nav">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="fas fa-play-circle fa-lg"></i> <strong>YouTube Clone</strong>
+      </a>
+      <span class="ms-auto me-3">Welcome, <strong>Chama Phiri</strong></span>
+      <a href="logout.html" class="btn btn-sm btn-outline-danger me-3">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="#" class="active"><i class="fas fa-home me-2"></i> Dashboard</a>
+    <a href="#"><i class="fas fa-upload me-2"></i> Upload Video</a>
+    <a href="#"><i class="fas fa-film me-2"></i> My Videos</a>
+    <a href="#"><i class="fas fa-chart-bar me-2"></i> Analytics</a>
+    <a href="#"><i class="fas fa-user me-2"></i> Profile</a>
+    <a href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+  </div>
+
+
+    <!-- Content -->
+    <div class="main-content">
+    <div class="container mt-5">
+
+      <h4 class="my-2">Channel Settings</h4>
+
+      <div class="card p-4 shadow-sm">
+
+        <form id="channelSettingsForm">
+
+          <div class="mb-4 text-center">
+            <img id="avatarPreview" src="https://placehold.co/150x150" alt="Channel Avatar" class="avatar-preview" />
+            <input type="file" class="form-control mt-2" id="avatarUpload" accept="image/*">
+          </div>
+
+          <!-- Banner Upload -->
+          <div class="mb-4 text-center">
+            <label class="form-label">Channel Banner</label>
+            <div>
+              <img id="bannerPreview" src="https://placehold.co/1000x200" alt="Channel Banner" class="img-fluid mb-2" style="max-height:200px; object-fit:cover; border:1px solid #ccc;">
+              <input type="file" class="form-control" id="bannerUpload" accept="image/*">
+              <input type="hidden" id="croppedBanner" name="croppedBanner">
+            </div>
+          </div>
+ 
+
+          <div class="mb-3">
+            <label class="form-label">Channel Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="channelName" value="My Awesome Channel" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Channel Description</label>
+            <textarea class="form-control" id="channelDescription" rows="4">Welcome to my channel!</textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Channel Tags</label>
+            <div id="tagsContainer" class="mb-2"></div>
+            <input type="text" class="form-control" id="tagInput" placeholder="Type a tag and press Enter">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Country of Residence</label>
+            <select class="form-select" id="country">
+              <option value="">Select Country</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>India</option>
+              <option>Australia</option>
+              <option>Zambia</option>
+              <!-- Add more as needed -->
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-danger w-100">Save Changes</button>
+
+        </form>
+
+      </div>
+
+    </div>
+    </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    
+<!-- Custom Script -->
+<script>
+  const avatarUpload = document.getElementById('avatarUpload');
+  const avatarPreview = document.getElementById('avatarPreview');
+  const tagInput = document.getElementById('tagInput');
+  const tagsContainer = document.getElementById('tagsContainer');
+
+  avatarUpload.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      avatarPreview.src = URL.createObjectURL(file);
+    }
+  });
+
+  tagInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const tagText = tagInput.value.trim();
+      if (tagText !== '') {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.innerHTML = `${tagText} <i class="fas fa-times" onclick="this.parentElement.remove()"></i>`;
+        tagsContainer.appendChild(tag);
+        tagInput.value = '';
+      }
+    }
+  });
+
+  document.getElementById('channelSettingsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Channel settings saved!');
+  });
+</script>

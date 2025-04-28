@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watch Video - YouTube Clone</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f9f9f9;
+    }
+    .video-container {
+      position: relative;
+      background-color: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .quality-select {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 120px;
+      z-index: 10;
+    }
+    .channel-info {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+    .channel-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .comment-reply {
+      margin-left: 40px;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .sort-comments {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .suggested-video img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .suggested-video-title {
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-top: 1px;
+      color: #333;
+    }
+    a{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid mt-4">
+  <div class="row g-4 col-md-11 mx-auto">
+    <!-- Video Content -->
+    <div class="col-lg-8">
+
+      <!-- Video Player -->
+      <div class="video-container mb-3">
+        <select class="form-select form-select-sm quality-select">
+          <option selected>720p</option>
+          <option>480p</option>
+          <option>360p</option>
+          <option>240p</option>
+        </select>
+        <video class="w-100" height="450" controls>
+          <source src="sample-video-720p.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+
+      <!-- Video Title -->
+      <h2>Exploring the Wild Mountains of Africa</h2>
+
+      <!-- Channel Info and Actions -->
+      <div class="channel-info">
+        <img src="https://placehold.co/50" alt="Channel" class="channel-avatar">
+        <div>
+          <h6 class="mb-0">AdventureWorld</h6>
+          <small>1.2M subscribers</small>
+        </div>
+        <button class="btn btn-danger btn-sm ms-auto rounded-4">
+          Subscribe
+        </button>
+      </div>
+
+      <!-- Video Actions -->
+      <div class="d-flex align-items-center mb-3">
+        <button class="btn btn-outline-success btn-sm me-2">
+          <i class="fas fa-thumbs-up me-1"></i> Like (1.2K)
+        </button>
+        <button class="btn btn-outline-danger btn-sm me-3">
+          <i class="fas fa-thumbs-down me-1"></i> Dislike (45)
+        </button>
+        <small class="text-muted"><i class="fas fa-eye me-1"></i> 55,000 views • 2 days ago</small>
+      </div>
+
+      <!-- Description -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <p>Join me on a journey through Africa’s most stunning mountain ranges! Featuring breathtaking views and thrilling adventures. Don’t forget to like and subscribe! 🌍✨</p>
+        </div>
+      </div>
+
+      <!-- Sort Comments -->
+      <div class="sort-comments">
+        <h5><i class="fas fa-comments me-2 text-primary"></i>Comments (89)</h5>
+        <select class="form-select form-select-sm" style="width: 150px;">
+          <option selected>Latest</option>
+          <option>Popular</option>
+        </select>
+      </div>
+
+      <!-- Comment List -->
+      <div class="mb-4">
+        <!-- Comment 1 -->
+        <div class="mb-3">
+          <strong>Jane Doe</strong> <small class="text-muted">• 1 hour ago</small>
+          <p>Amazing footage! Makes me want to travel more 🚀</p>
+
+          <!-- Reply to Comment 1 -->
+          <div class="comment-reply">
+            <strong>TravelerMax</strong> <small class="text-muted">• 30 mins ago</small>
+            <p>Totally agree! Africa is beautiful!</p>
+          </div>
+          <hr>
+        </div>
+
+        <!-- Comment 2 -->
+        <div class="mb-3">
+          <strong>Explorer101</strong> <small class="text-muted">• 3 hours ago</small>
+          <p>Such a peaceful place. Thanks for sharing ❤️</p>
+
+          <!-- Reply to Comment 2 -->
+          <div class="comment-reply">
+            <strong>MountainMan</strong> <small class="text-muted">• 1 hour ago</small>
+            <p>Right? Those drone shots were stunning!</p>
+          </div>
+          <hr>
+        </div>
+
+        <!-- Add New Comment -->
+        <form>
+          <div class="mb-3">
+            <textarea class="form-control" rows="3" placeholder="Add a public comment..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-sm btn-primary">
+            <i class="fas fa-paper-plane me-1"></i> Comment
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Suggested Videos Sidebar -->
+    <div class="col-lg-4">
+      <h5 class="mb-3">Up Next</h5>
+
+      <div class="mb-3 suggested-video">
+        <a href="#" class="d-flex">
+          <img style="flex:1;margin-right:4px" src="https://placehold.co/160x90" alt="Suggested Video">
+          <div style="flex:2">
+            <div class="suggested-video-title">Hiking in Namibia - 4K Adventure</div>
+            <small class="d-block text-muted">Channel Name</small>
+            <small class="text-muted">55,000 views • 2 days ago</small>
+          </div>
+        </a>
+      </div>
+
+      <div class="mb-3 suggested-video">
+        <a href="#" class="d-flex">
+          <img style="flex:1;margin-right:4px" src="https://placehold.co/160x90" alt="Suggested Video">
+          <div style="flex:2">
+            <div class="suggested-video-title">Top 10 National Parks in Africa</div>
+            <small class="d-block text-muted">Channel Name</small>
+            <small class="text-muted">55,000 views • 2 days ago</small>
+          </div>
+        </a>
+      </div>
+
+      <div class="mb-3 suggested-video">
+        <a href="#" class="d-flex">
+          <img style="flex:1;margin-right:4px" src="https://placehold.co/160x90" alt="Suggested Video">
+          <div style="flex:2">
+            <div class="suggested-video-title">Desert Safari Adventure - Full Experience</div>
+            <small class="d-block text-muted">Channel Name</small>
+            <small class="text-muted">55,000 views • 2 days ago</small>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
