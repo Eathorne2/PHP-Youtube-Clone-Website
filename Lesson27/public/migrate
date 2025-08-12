@@ -1,0 +1,24 @@
+<?php
+
+if(PHP_SAPI !== 'cli')
+	die("This tool can only be run in the command window");
+
+require '../app/functions.php';
+require '../app/config.php';
+require '../app/classes/Core/Database.php';
+require '../app/classes/Migration/Migration.php';
+
+$action = $argv[1] ?? null;
+$table = $argv[2] ?? null;
+$seed = $argv[3] ?? null;
+
+if(!$action || !$table){
+
+	echo "\nUsage: php migrate [create|drop] [table|all] [seed]";
+	die();
+}
+
+$seed = ($seed == 'seed') ? true:false;
+
+$migrate = new \Migration\Migration;
+$migrate->run($action,$table,$seed);
